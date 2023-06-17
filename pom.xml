@@ -20,6 +20,148 @@
 		<maven.compiler.target>11</maven.compiler.target>
 	</properties>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.26</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.5</version>
+		</dependency>
+		<!--		<dependency>-->
+		<!--			<groupId>org.apache.logging.log4j</groupId>-->
+		<!--			<artifactId>log4j-slf4j-impl</artifactId>-->
+		<!--			<version>2.20.0</version>-->
+		<!--			<scope>runtime</scope>-->
+		<!--		</dependency>-->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>2.0.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-1.2-api</artifactId>
+			<version>2.20.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.12.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>4.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.15.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-csv</artifactId>
+			<version>2.14.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-inline</artifactId>
+			<version>5.2.0</version>
+		</dependency>
+		<!--		<dependency>-->
+		<!--			<groupId>com.opencsv</groupId>-->
+		<!--			<artifactId>opencsv</artifactId>-->
+		<!--			<version>5.6</version>-->
+		<!--		</dependency>-->
+	</dependencies>
+
+
+		<build>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.22.2</version>
+					<configuration>
+						<testFailureIgnore>true</testFailureIgnore>
+						<includes>
+							<include>**/*Tests.java</include>
+						</includes>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.8.7</version>
+					<configuration>
+	<!--					<excludes>-->
+	<!--						<exclude>/**/file*/*</exclude>-->
+	<!--					</excludes>-->
+						<skip>false</skip>
+						<rules>
+							<rule>
+								<!--							<element>CLASS</element>-->
+								<!--							<excludes>-->
+								<!--								<exclude>*Test</exclude>-->
+								<!--							</excludes>-->
+								<limits>
+									<limit>
+										<counter>LINE</counter>
+										<value>COVEREDRATIO</value>
+										<minimum>0.0</minimum>
+									</limit>
+								</limits>
+							</rule>
+						</rules>
+					</configuration>
+					<executions>
+						<execution>
+							<id>prepare-agent</id>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>report</id>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>${project.build.directory}/jacoco</outputDirectory>
+							</configuration>
+						</execution>
+						<execution>
+							<id>check</id>
+							<goals>
+								<goal>check</goal>
+							</goals>
+							<!--						<configuration>-->
+							<!--							<check>-->
+							<!--								<instructionRatio>100</instructionRatio>-->
+							<!--								<branchRatio>95</branchRatio>-->
+							<!--								<lineRatio>90</lineRatio>-->
+							<!--								<methodRatio>90</methodRatio>-->
+							<!--								<classRatio>90</classRatio>-->
+							<!--							</check>-->
+							<!--						</configuration>-->
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</build>
+
+
 	<distributionManagement>
 		<repository>
 			<id>github</id>
