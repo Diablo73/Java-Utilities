@@ -11,19 +11,12 @@ import org.testng.annotations.Test;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @author Diablo73
- * @version 1.0 <br> 10/03/2022
- * @since 27/02/2022
- */
-
 public class DateUtilTests {
 
 	private static final Date 		currentDateInDate			=	new Date();
 	private static final String 	currentDateInString			=	DateUtil.parseDateToString(currentDateInDate, DateUtil.DATE_TIME_18_DC_FORMAT);
 	private static final int 		span						=	1;
 	private static final String 	randomString				=	RandomStringUtils.randomAlphabetic(10);
-
 
 
 	@Test
@@ -199,7 +192,4 @@ public class DateUtilTests {
 			Assert.assertEquals(((CommonException) e).getCommonInfoEnum(), CommonInfoEnum.INVALID_LIST);
 		}
 	}
-
-
-
 }

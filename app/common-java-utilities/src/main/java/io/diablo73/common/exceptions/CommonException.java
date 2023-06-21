@@ -2,14 +2,10 @@ package io.diablo73.common.exceptions;
 
 import io.diablo73.common.enums.CommonInfoEnum;
 import lombok.Data;
-
-/**
- * @author Diablo73
- * @version 1.0 <br> 10/03/2022
- * @since 10/03/2022
- */
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class CommonException extends RuntimeException {
 
 	public CommonInfoEnum commonInfoEnum;
@@ -18,5 +14,10 @@ public class CommonException extends RuntimeException {
 	public CommonException(CommonInfoEnum commonInfoEnum) {
 		super(commonInfoEnum.getResultMessage());
 		this.commonInfoEnum = commonInfoEnum;
+	}
+
+	public CommonException(CommonInfoEnum commonInfoEnum, Exception e) {
+		super(commonInfoEnum.getResultMessage());
+		this.commonInfoEnum = commonInfoEnum.setResultInfoEnumWithMessage(e.toString());
 	}
 }

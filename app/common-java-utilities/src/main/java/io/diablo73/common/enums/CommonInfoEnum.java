@@ -2,12 +2,6 @@ package io.diablo73.common.enums;
 
 import lombok.Getter;
 
-/**
- * @author Diablo73
- * @version 1.0 <br> 13/03/2022
- * @since 27/02/2022
- */
-
 @Getter
 public enum CommonInfoEnum {
 
@@ -16,6 +10,8 @@ public enum CommonInfoEnum {
 	INVALID_LIST("0003", "INVALID_LIST", ""),
 	EMAIL_FAILURE("0004", "EMAIL_FAILURE", ""),
 	INVALID_NUMBER("0005", "INVALID_NUMBER", ""),
+	HASH_ERROR("0006", "HASH_ERROR", ""),
+	SECRET_ERROR("0007", "SECRET_ERROR", ""),
 
 	FILE_NOT_FOUND("0404", "FILE_NOT_FOUND", ""),
 

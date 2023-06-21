@@ -5,12 +5,6 @@ import io.diablo73.common.exceptions.CommonException;
 
 import java.util.List;
 
-/**
- * @author Diablo73
- * @version 1.0 <br> 21/03/2022
- * @since 21/03/2022
- */
-
 public class MathUtil {
 
 	public static <T extends Number> double averageByLoop(List<T> list) {
@@ -31,9 +25,8 @@ public class MathUtil {
 
 	public static long factorial(long n) {
 		if (n < 0) {
-			throw new CommonException(
-					CommonInfoEnum.INVALID_NUMBER
-							.setResultInfoEnumWithMessage("Error", String.valueOf(n), "Factorial can be computed only for non-negative integers!!!"));
+			throw new CommonException(CommonInfoEnum.INVALID_NUMBER.setResultInfoEnumWithMessage(
+					"ERROR", String.valueOf(n), "Factorial can be computed only for non-negative integers!!!"));
 		} else if (n < 2) {
 			return 1;
 		}
@@ -81,5 +74,4 @@ public class MathUtil {
 
 		return max;
 	}
-
 }
