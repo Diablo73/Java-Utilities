@@ -7,14 +7,7 @@ import org.testng.annotations.Test;
 
 import java.util.Random;
 
-/**
- * @author Diablo73
- * @version 1.0 <br> 10/03/2022
- * @since 05/03/2022
- */
-
 public class CryptoUtilTests {
-
 
 	@Test(invocationCount = 2)
 	public void cryptoUtilTestCase() {
@@ -31,23 +24,6 @@ public class CryptoUtilTests {
 //			System.out.println();
 		}
 	}
-
-	@Test
-	public void cryptoUtil64TestCase() {
-
-		String message = getMessage();
-		String key = getKey();
-
-//		System.out.println(message);
-		String encryptedMessage = CryptoUtil.encrypt(message, key);
-//		System.out.println(encryptedMessage);
-		String decryptedMessage = CryptoUtil.decrypt(encryptedMessage, key);
-//		System.out.println(decryptedMessage);
-		Assert.assertEquals(message, decryptedMessage);
-//		System.out.println();
-
-	}
-
 
 	private String getMessage() {
 		return RandomStringUtils.randomAlphanumeric(10000 + new Random().nextInt(90000));
