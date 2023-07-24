@@ -7,6 +7,54 @@ import java.util.List;
 
 public class MathUtil {
 
+
+	public static <T extends Number> double absolute(T number) {
+		if (number.doubleValue() < 0) {
+			return -number.doubleValue();
+		} else {
+			return number.doubleValue();
+		}
+	}
+
+	public static <T extends Number> double exponent(T number, T power) {
+		int product = 1;
+		for (int i = 0; i < power.doubleValue(); i++) {
+			product *= number.doubleValue();
+		}
+		return product;
+	}
+
+	public static <T extends Number> double squareExponent(T number) {
+		return exponent(number, 2);
+	}
+
+	public static <T extends Number> double cubeExponent(T number) {
+		return exponent(number, 3);
+	}
+
+	public static <T extends Number> double rootExponent(T number, T root) {
+		double x = number.doubleValue();
+		double n = root.doubleValue();
+		double epsilon = 0.00001;
+		double x0 = x / n;
+		double x1 = (1.0 / n) * ((n - 1) * x0 + (x / (exponent(x0, n - 1))));
+
+		while (absolute(x1 - x0) >= epsilon) {
+			x0 = x1;
+			x1 = (1.0 / n) * ((n - 1) * x0 + (x / (exponent(x0, n - 1))));
+		}
+
+		return x1;
+	}
+
+	public static <T extends Number> double squareRootExponent(T number) {
+		return rootExponent(number, 2);
+	}
+
+	public static <T extends Number> double cubeRootExponent(T number) {
+		return rootExponent(number, 3);
+	}
+
 	public static <T extends Number> double averageByLoop(List<T> list) {
 		double sum = 0;
 		for (T i : list) {
