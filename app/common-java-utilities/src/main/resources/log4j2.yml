@@ -1,0 +1,47 @@
+Configuration:
+  name: Default
+  Appenders:
+    Console:
+      - name: Console_Appender
+        target: SYSTEM_LAYOUT
+        JsonLayout:
+          KeyValuePair:
+            - key: dateTime
+              value: "$${date:yyyy-MM-dd'T'HH:mm:ss.SSSZ}"
+          compact: ${env:LOGGING_TYPE_JSON_COMPACT:-false}
+          objectMessageAsJsonObject: ${env:LOGGING_TYPE_JSON_MESSAGE_AS_JSON:-true}
+          properties: ${env:LOGGING_TYPE_JSON_PROPERTIES:-true}
+          eventEol: ${env:LOGGING_TYPE_JSON_EVENT_EOL:-true}
+          location: ${env:LOGGING_TYPE_JSON_LOCATION:-false}
+      - name: PLAIN
+        target: SYSTEM_LAYOUT
+        PatternLayout:
+          pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %c.%M() %X - %msg%n"
+      - name: JSON_TEMPLATE
+        target: SYSTEM_LAYOUT
+        JsonTemplateLayout:
+          eventTemplateUri: "classpath:JsonLayout.json"
+          maxStringLength: ${env:JSON_TEMPLATE_MAX_LOG_LENGTH:-1000000}
+          EventTemplateAdditionalField:
+            - key: "message"
+              format: "JSON"
+              value: '{"$resolver":"messageMaskPlugin","replaceableRegex":"{\"oldText1\":\"newText1\",\"oldText2\":\"newText2\"}"}'
+            - key: "contextMap"
+              format: "JSON"
+              value: '{"$resolver":"mdc"}'
+
+  Loggers:
+    Logger:
+      - name: io.diablo73
+        level: ${env:BASE_LOGGER_LEVEL:-INFO}
+        additivity: false
+        AppenderRef:
+          - ref: ${env:APPENDER:-PLAIN}
+            level: ${env:ROOT_LOGGER_LEVEL:-INFO}
+      - name: org.apache.kafka
+        level: false
+        additivity: false
+    Root:
+      level: ${env:ROOT_LOGGER_LEVEL:-INFO}
+      AppenderRef:
+        - ref: ${env:APPENDER:-PLAIN}
