@@ -19,7 +19,7 @@ public class MapperUtil {
 	private static final ObjectMapper objectMapper = new ObjectMapper();
 
 
-	public static Object convertMap2Object(Map<String, Object> map, Class<?> clazz) {
+	public static <T> T convertMap2Object(Map<String, Object> map, Class<T> clazz) {
 
 		return objectMapper.convertValue(map, clazz);
 	}

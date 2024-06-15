@@ -16,10 +16,25 @@ public class CircularQueue<E> {
 		return array.size();
 	}
 
+	public E get() {
+		return array.get(currentIndex);
+	}
+
+	public E get(int i) {
+		return array.get(i % array.size());
+	}
+
+	public int getCurrentIndex() {
+		return currentIndex;
+	}
+
+	public List<E> getArray() {
+		return array;
+	}
+
 	public E next() {
-		int returnIndex = currentIndex;
 		currentIndex = (currentIndex + 1) % array.size();
-		return array.get(returnIndex);
+		return array.get(currentIndex);
 	}
 
 	public boolean hasNext() {
