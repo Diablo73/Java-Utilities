@@ -2,9 +2,12 @@ package io.diablo73.common.utils;
 
 import io.diablo73.common.enums.CommonInfoEnum;
 import io.diablo73.common.exceptions.CommonException;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Diablo73
@@ -13,6 +16,8 @@ import java.util.Objects;
  */
 
 public class ValidatorUtil {
+
+	private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
 
 
 	public static void checkDate(Object... date) {
@@ -49,5 +54,14 @@ public class ValidatorUtil {
 					CommonInfoEnum.INVALID_LIST
 							.setResultInfoEnumWithMessage("Error", "List provided cannot be empty!!!"));
 		}
+	}
+
+
+	public static boolean isValidEmail(String email) {
+		if (StringUtils.isEmpty(email)) {
+			return false;
+		}
+		Matcher matcher = EMAIL_PATTERN.matcher(email);
+		return matcher.matches();
 	}
 }
