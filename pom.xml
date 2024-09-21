@@ -6,7 +6,7 @@
 
 	<groupId>io.diablo73.universal</groupId>
 	<artifactId>java-utilities</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>${revision}</version>
 	<packaging>pom</packaging>
 	<modules>
 		<module>app/aws-java-utilities</module>
@@ -14,12 +14,13 @@
 	</modules>
 	<name>Java-Utilities</name>
 	<description>Utility classes</description>
+
 	<properties>
 		<java.version>17</java.version>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<log4j2.version>2.20.0</log4j2.version>
-		<java.utilities.module.version>1.0-SNAPSHOT</java.utilities.module.version>
+		<revision>1.0-SNAPSHOT</revision>
 	</properties>
 
 	<dependencies>
@@ -87,7 +88,6 @@
 		<!--		</dependency>-->
 	</dependencies>
 
-
 		<build>
 			<plugins>
 				<plugin>
@@ -100,6 +100,30 @@
 							<include>**/*Tests.java</include>
 						</includes>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>flatten-maven-plugin</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<updatePomFile>true</updatePomFile>
+					</configuration>
+					<executions>
+						<execution>
+							<id>flatten</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>flatten</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>flatten-clean</id>
+							<phase>clean</phase>
+							<goals>
+								<goal>clean</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.jacoco</groupId>
@@ -163,7 +187,6 @@
 			</plugins>
 		</build>
 
-
 	<distributionManagement>
 		<repository>
 			<id>github</id>
@@ -171,5 +194,4 @@
 			<url>https://maven.pkg.github.com/Diablo73/Java-Utilities</url>
 		</repository>
 	</distributionManagement>
-
 </project>

@@ -50,3 +50,6 @@ mvnw*
 .run
 /**/**/application-local.properties
 /**/**/Secrets.json
+
+/**/.flattened-pom.xml
+# find . -type f -name '*flattened-pom.xml' -delete
