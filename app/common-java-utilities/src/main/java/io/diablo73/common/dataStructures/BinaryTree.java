@@ -105,4 +105,52 @@ public class BinaryTree<E> {
 
 		return Math.max(leftHeight, rightHeight) + 1;
 	}
+
+	public List<List<E>> convertToLevelOrderTraversalListOfLists() {
+		List<List<E>> result = new ArrayList<>();
+		List<BinaryTree<E>> currentLevel = new ArrayList<>();
+		currentLevel.add(this);
+
+		while (!currentLevel.isEmpty()) {
+			List<E> levelValues = new ArrayList<>();
+			List<BinaryTree<E>> nextLevel = new ArrayList<>();
+
+			for (BinaryTree<E> node : currentLevel) {
+				if (Objects.nonNull(node)) {
+					levelValues.add(node.value);
+					nextLevel.add(Objects.nonNull(node.leftBinaryTree) ? node.leftBinaryTree : null);
+					nextLevel.add(Objects.nonNull(node.rightBinaryTree) ? node.rightBinaryTree : null);
+				} else {
+					levelValues.add(null);
+					nextLevel.add(null);
+					nextLevel.add(null);
+				}
+			}
+
+			boolean hasNonNull = false;
+			for (BinaryTree<E> node : nextLevel) {
+				if (Objects.nonNull(node)) {
+					hasNonNull = true;
+					break;
+				}
+			}
+
+			result.add(levelValues);
+			if (!hasNonNull) {
+				break;
+			}
+			currentLevel = nextLevel;
+		}
+
+		return result;
+	}
+
+	public void printLevelOrderTraversal() {
+		for (List<E> level : convertToLevelOrderTraversalListOfLists()) {
+			for (E val : level) {
+				System.out.print(val + "\t");
+			}
+			System.out.println();
+		}
+	}
 }
