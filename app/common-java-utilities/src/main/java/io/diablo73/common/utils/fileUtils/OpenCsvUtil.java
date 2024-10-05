@@ -1,4 +1,4 @@
-package io.diablo73.common.fileUtils;
+package io.diablo73.common.utils.fileUtils;
 
 import com.opencsv.CSVReader;
 import lombok.extern.slf4j.Slf4j;
