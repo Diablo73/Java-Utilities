@@ -20,7 +20,7 @@ public class HashUtilTests {
 		Map<Integer, Integer> tableShardMap = new HashMap<>();
 		Map<Integer, Integer> dbShardMap = new HashMap<>();
 		for (int i = 0; i < ITERATION_COUNT; i++) {
-			String bits = HashUtil.generate4DigitIntValueOfHash(RandomUtil.generate8DigitBits());
+			String bits = HashUtil.generate4DigitIntValueOfHash(RandomUtil.generateSnowflakeKey());
 			int tableShard = Integer.parseInt(bits.substring(bits.length() - 2)) % COUNT_OF_SHARDS;
 			int dbShard = Integer.parseInt(bits.substring(bits.length() - 4, bits.length() - 2)) % COUNT_OF_SHARDS;
 			tableShardMap.put(tableShard, tableShardMap.getOrDefault(tableShard, 0) + 1);
