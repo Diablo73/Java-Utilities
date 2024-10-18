@@ -27,13 +27,13 @@ public enum CurrencyEnum {
 	;
 
 	private final String currencyCode;
-	private final String currencyValue;
+	private final String currencyNumericCode;
 	private final String currencySymbol;
 	private final String currencyName;
 
-	CurrencyEnum(String currencyCode, String currencyValue, String currencySymbol, String currencyName) {
+	CurrencyEnum(String currencyCode, String currencyNumericCode, String currencySymbol, String currencyName) {
 		this.currencyCode = currencyCode;
-		this.currencyValue = currencyValue;
+		this.currencyNumericCode = currencyNumericCode;
 		this.currencySymbol = currencySymbol;
 		this.currencyName = currencyName;
 	}
@@ -42,9 +42,9 @@ public enum CurrencyEnum {
 		if (Objects.isNull(var)) {
 			return null;
 		}
-		boolean isCurrencyValue = StringUtils.isNumeric(var);
+		boolean isCurrencyNumericCode = StringUtils.isNumeric(var);
 		for (CurrencyEnum currencyEnum : values()) {
-			if (var.equals(isCurrencyValue ? currencyEnum.getCurrencyValue() : currencyEnum.getCurrencyCode())) {
+			if (var.equals(isCurrencyNumericCode ? currencyEnum.getCurrencyNumericCode() : currencyEnum.getCurrencyCode())) {
 				return currencyEnum;
 			}
 		}
