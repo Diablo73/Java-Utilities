@@ -16,11 +16,11 @@
 	<description>Utility classes</description>
 
 	<properties>
-		<java.version>17</java.version>
-		<maven.compiler.source>17</maven.compiler.source>
-		<maven.compiler.target>17</maven.compiler.target>
+		<java.version>21</java.version>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
 		<log4j2.version>2.20.0</log4j2.version>
-		<revision>1.0-SNAPSHOT</revision>
+		<revision>1.1-SNAPSHOT</revision>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.26</version>
+			<version>1.18.34</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -125,7 +125,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.7</version>
+				<version>0.8.12</version>
 				<configuration>
 <!--					<excludes>-->
 <!--						<exclude>/**/file*/*</exclude>-->
